@@ -6,17 +6,17 @@ const GIPHY_URL = "https://api.giphy.com/v1/gifs/translate"
 const GIPHY_KEY = "TIh4sY44qZD8fQp7h89BUwROphX4BVKM"
 let inputElement = document.querySelector("#gifSearch")
 let searchBtnElement = document.querySelector("#search")
-let imgEle = document.querySelector("#giphy")
+let imgElement = document.querySelector("#giphy")
 
-searchBtnElement.addEventLestener("click", searchGif)
+searchBtnElement.addEventListener("click", searchGif)
 
 function searchGif() {
-    let searchTerm = inputEle.value
+    let searchTerm = inputElement.value
 
     fetch(`${GIPHY_URL}?api_key=${GIPHY_KEY}&s=${searchTerm}`)
-    .then((result) => result.json)
+    .then((result) => result.json())//call not reference when just .json
     .then((contents)=> {
-        imgEle.src = contents.data.images.original.url;
+        imgElement.src = contents.data.images.original.url;
     })
     .catch((err)=> console.error(err));
 }
